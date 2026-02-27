@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
-export default function EditStudentPage({ params }) {
+export default function EditStudentPage() {
   const router = useRouter();
+  const params = useParams(); 
   const id = Number(params.id);
 
   const [form, setForm] = useState({
@@ -16,6 +17,7 @@ export default function EditStudentPage({ params }) {
 
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
     const fetchStudent = async () => {
       const res = await fetch("/api/students");
