@@ -17,7 +17,7 @@ export default async function StudentDetails({ params }) {
         Student Details
       </h1>
 
-      <div className="bg-white p-8 rounded-lg shadow max-w-xl">
+      <div className="bg-white text-blue-500 font-serif p-8 rounded-lg shadow max-w-xl">
         <p className="mb-4">
           <span className="font-semibold">Name:</span> {student.name}
         </p>

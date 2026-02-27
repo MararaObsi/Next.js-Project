@@ -22,29 +22,29 @@ export default function StudentTable({ students }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow overflow-hidden">
+    <div className="bg-black rounded-lg shadow overflow-hidden">
       <table className="w-full text-left">
-        <thead className="bg-black-200">
+        <thead className="bg-black">
           <tr>
-            <th className="p-4">Name</th>
-            <th className="p-4">Email</th>
-            <th className="p-4">Department</th>
-            <th className="p-4">Year</th>
-            <th className="p-4">Actions</th>
+            <th className="p-4 text-white">Name</th>
+            <th className="p-4 text-white">Email</th>
+            <th className="p-4 text-white">Department</th>
+            <th className="p-4 text-white">Year</th>
+            <th className="p-4 text-white">Actions</th>
           </tr>
         </thead>
 
         <tbody>
           {students.map((student) => (
-            <tr key={student.id} className="border-t hover:bg-gray-100">
-              <td className="p-4 text-blue-600 font-medium">
+            <tr key={student.id} className="border-t">
+              <td className="p-4 text-blue-500 font-medium">
                 <Link href={`/students/${student.id}`}>
                   {student.name}
                 </Link>
               </td>
-              <td className="p-4">{student.email}</td>
-              <td className="p-4">{student.department}</td>
-              <td className="p-4">{student.year}</td>
+              <td className="p-4 text-white">{student.email}</td>
+              <td className="p-4 text-white">{student.department}</td>
+              <td className="p-4 text-white">{student.year}</td>
               <td className="p-4 flex gap-2">
   <Link
     href={`/students/edit/${student.id}`}

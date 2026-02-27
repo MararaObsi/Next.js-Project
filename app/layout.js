@@ -1,6 +1,7 @@
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Topbar from "@/components/Topbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "UniTrack - Student Management System",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
             <main className="p-6">{children}</main>
           </div>
         </div>
+        <Footer />
       </body>
     </html>
   );

@@ -61,7 +61,7 @@ export default function EditStudentPage() {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow max-w-lg space-y-4"
+        className="bg-white text-black p-8 rounded-lg shadow max-w-lg space-y-4"
       >
         <input
           name="name"

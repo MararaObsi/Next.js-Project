@@ -36,19 +36,20 @@ export default function AddStudentPage() {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">
+    <div className="min-h-screen bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">
         Add New Student
       </h1>
 
+      
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow max-w-lg space-y-4"
+        className="bg-white rounded-2xl shadow-lg p-8 max-w-lg mx-auto space-y-5 border"
       >
         <input
           name="name"
           placeholder="Full Name"
-          className="w-full p-3 border rounded"
+          className="w-full p-3 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           onChange={handleChange}
           required
         />
@@ -57,7 +58,7 @@ export default function AddStudentPage() {
           name="email"
           type="email"
           placeholder="Email"
-          className="w-full p-3 border rounded"
+          className="w-full p-3 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           onChange={handleChange}
           required
         />
@@ -65,7 +66,7 @@ export default function AddStudentPage() {
         <input
           name="department"
           placeholder="Department"
-          className="w-full p-3 border rounded"
+          className="w-full p-3 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           onChange={handleChange}
           required
         />
@@ -74,14 +75,14 @@ export default function AddStudentPage() {
           name="year"
           type="number"
           placeholder="Year"
-          className="w-full p-3 border rounded"
+          className="w-full p-3 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
           onChange={handleChange}
           required
         />
 
         <button
           type="submit"
-          className="bg-gray-900 text-white px-6 py-3 rounded"
+          className="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-800 transition font-semibold"
         >
           Add Student
         </button>
