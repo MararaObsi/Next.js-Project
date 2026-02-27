@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AddStudentPage() {
+export default function EditStudentPage({ params }) {
   const router = useRouter();
+  const id = Number(params.id);
 
   const [form, setForm] = useState({
     name: "",
@@ -13,33 +14,48 @@ export default function AddStudentPage() {
     year: "",
   });
 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStudent = async () => {
+      const res = await fetch("/api/students");
+      const data = await res.json();
+      const student = data.find((s) => s.id === id);
+      if (!student) return;
+
+      setForm({
+        name: student.name,
+        email: student.email,
+        department: student.department,
+        year: student.year,
+      });
+      setLoading(false);
+    };
+    fetchStudent();
+  }, [id]);
+
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     await fetch("/api/students", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, ...form }),
     });
 
     router.push("/students");
     router.refresh();
   };
 
+  if (loading) return <p>Loading...</p>;
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">
-        Add New Student
-      </h1>
+      <h1 className="text-3xl font-bold mb-6">Edit Student</h1>
 
       <form
         onSubmit={handleSubmit}
@@ -49,6 +65,7 @@ export default function AddStudentPage() {
           name="name"
           placeholder="Full Name"
           className="w-full p-3 border rounded"
+          value={form.name}
           onChange={handleChange}
           required
         />
@@ -58,6 +75,7 @@ export default function AddStudentPage() {
           type="email"
           placeholder="Email"
           className="w-full p-3 border rounded"
+          value={form.email}
           onChange={handleChange}
           required
         />
@@ -66,6 +84,7 @@ export default function AddStudentPage() {
           name="department"
           placeholder="Department"
           className="w-full p-3 border rounded"
+          value={form.department}
           onChange={handleChange}
           required
         />
@@ -75,15 +94,16 @@ export default function AddStudentPage() {
           type="number"
           placeholder="Year"
           className="w-full p-3 border rounded"
+          value={form.year}
           onChange={handleChange}
           required
         />
 
         <button
           type="submit"
-          className="bg-gray-900 text-white px-6 py-3 rounded"
+          className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700"
         >
-          Add Student
+          Update Student
         </button>
       </form>
     </div>
