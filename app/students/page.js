@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 async function getStudents() {
   const res = await fetch("http://localhost:3000/api/students", {
-    cache: "no-store", 
+    cache: "no-store",
   });
 
   return res.json();
@@ -28,8 +30,12 @@ export default async function StudentsPage() {
 
           <tbody>
             {students.map((student) => (
-              <tr key={student.id} className="border-t">
-                <td className="p-4">{student.name}</td>
+              <tr key={student.id} className="border-t hover:bg-gray-100">
+                <td className="p-4 text-blue-600 font-medium">
+                  <Link href={`/students/${student.id}`}>
+                    {student.name}
+                  </Link>
+                </td>
                 <td className="p-4">{student.email}</td>
                 <td className="p-4">{student.department}</td>
                 <td className="p-4">{student.year}</td>
