@@ -31,7 +31,7 @@ export default function AddStudentPage() {
       body: JSON.stringify(form),
     });
 
-    router.push("/students");
+    router.push("/admin/students");
     router.refresh();
   };
 

@@ -38,7 +38,7 @@ export default function StudentTable({ students }) {
           {students.map((student) => (
             <tr key={student.id} className="border-t">
               <td className="p-4 text-blue-500 font-medium">
-                <Link href={`/students/${student.id}`}>
+                <Link href={`/admin/students/${student.id}`}>
                   {student.name}
                 </Link>
               </td>
@@ -47,7 +47,7 @@ export default function StudentTable({ students }) {
               <td className="p-4 text-white">{student.year}</td>
               <td className="p-4 flex gap-2">
   <Link
-    href={`/students/edit/${student.id}`}
+    href={`/admin/students/edit/${student.id}`}
     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
   >
     Edit

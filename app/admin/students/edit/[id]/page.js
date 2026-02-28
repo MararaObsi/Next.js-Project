@@ -49,7 +49,7 @@ export default function EditStudentPage() {
       body: JSON.stringify({ id, ...form }),
     });
 
-    router.push("/students");
+    router.push("/admin/students");
     router.refresh();
   };
 
