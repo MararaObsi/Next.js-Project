@@ -1,18 +1,18 @@
 import StudentTable from "@/components/StudentTable";
-
-async function getStudents() {
-  const res = await fetch("http://localhost:3000/api/students", {
-    cache: "no-store",
-  });
-
-  return res.json();
-}
+import { supabase } from "@/lib/supabaseClient";
 
 export default async function StudentsPage() {
-  const students = await getStudents();
+  const { data: students, error } = await supabase
+    .from("Uniflowstudents")
+    .select("*")
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   return (
-    <div>
+    <div className="p-8">
       <h1 className="text-3xl font-bold mb-6">Students List</h1>
       <StudentTable students={students} />
     </div>

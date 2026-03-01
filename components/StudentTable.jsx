@@ -7,14 +7,11 @@ export default function StudentTable({ students }) {
   const router = useRouter();
 
   const handleDelete = async (id) => {
-    const confirmDelete = confirm("Are you sure you want to delete this student?");
-    if (!confirmDelete) return;
+    if (!confirm("Are you sure you want to delete this student?")) return;
 
     await fetch("/api/students", {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
 
@@ -46,20 +43,19 @@ export default function StudentTable({ students }) {
               <td className="p-4 text-white">{student.department}</td>
               <td className="p-4 text-white">{student.year}</td>
               <td className="p-4 flex gap-2">
-  <Link
-    href={`/admin/students/edit/${student.id}`}
-    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-  >
-    Edit
-  </Link>
-
-  <button
-    onClick={() => handleDelete(student.id)}
-    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-  >
-    Delete
-  </button>
-</td>
+                <Link
+                  href={`/admin/students/edit/${student.id}`}
+                  className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                >
+                  Edit
+                </Link>
+                <button
+                  onClick={() => handleDelete(student.id)}
+                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

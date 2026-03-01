@@ -1,9 +1,17 @@
-import { students } from "@/lib/data";
 import Dashboard from "@/components/Dashboard";
+import { supabase } from "@/lib/supabaseClient";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const { data: students, error } = await supabase
+    .from("Uniflowstudents")
+    .select("*");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
   return (
-    <div>
+    <div className="p-8">
       <Dashboard students={students} />
     </div>
   );

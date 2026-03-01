@@ -1,51 +1,62 @@
-import { students, getNextId } from "@/lib/data";
+import { supabase } from "@/lib/supabaseClient";
 
 export async function GET() {
-  return Response.json(students);
+  const { data, error } = await supabase.from("Uniflowstudents").select("*").order("created_at", { ascending: true });
+
+  if (error) {
+    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+  }
+
+  return new Response(JSON.stringify(data), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
 export async function POST(request) {
   const body = await request.json();
 
-  const newStudent = {
-    id: getNextId(),
-    name: body.name,
-    email: body.email,
-    department: body.department,
-    year: Number(body.year),
-  };
+  const { data, error } = await supabase
+    .from("students")
+    .insert([
+      {
+        name: body.name,
+        email: body.email,
+        department: body.department,
+        year: Number(body.year),
+        clerk_user_id: body.clerk_user_id || null,
+      },
+    ])
+    .select()
+    .single();
 
-  students.push(newStudent);
+  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
-  return Response.json(newStudent, { status: 201 });
+  return new Response(JSON.stringify(data), { status: 201 });
 }
+
 export async function DELETE(request) {
   const { id } = await request.json();
 
-  const index = students.findIndex((s) => s.id === Number(id));
+  const { error } = await supabase.from("students").delete().eq("id", id);
 
-  if (index === -1) {
-    return Response.json({ message: "Student not found" }, { status: 404 });
-  }
+  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
-  students.splice(index, 1);
-
-  return Response.json({ message: "Student deleted successfully" });
+  return new Response(JSON.stringify({ message: "Student deleted successfully" }));
 }
+
 export async function PUT(request) {
   const body = await request.json();
-  const id = Number(body.id);
+  const { id, name, email, department, year } = body;
 
-  const student = students.find((s) => s.id === id);
+  const { data, error } = await supabase
+    .from("students")
+    .update({ name, email, department, year })
+    .eq("id", id)
+    .select()
+    .single();
 
-  if (!student) {
-    return Response.json({ message: "Student not found" }, { status: 404 });
-  }
+  if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500 });
 
-  student.name = body.name || student.name;
-  student.email = body.email || student.email;
-  student.department = body.department || student.department;
-  student.year = body.year ? Number(body.year) : student.year;
-
-  return Response.json(student);
+  return new Response(JSON.stringify(data));
 }
