@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function HomePage() {
   const [stats, setStats] = useState({
@@ -30,11 +32,13 @@ export default function HomePage() {
   return (
     <div className="w-full">
 
-      
+      <Header />
+
+      {/* HERO SECTION */}
       <section className="w-full min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-indigo-800 via-blue-700 to-purple-800 text-white px-6">
 
         <h1 className="text-6xl md:text-7xl font-extrabold leading-tight">
-          The Complete <br /> University Management Platform
+          The Future of <br /> University Management
         </h1>
 
         <p className="mt-8 max-w-3xl text-xl opacity-90">
@@ -44,21 +48,21 @@ export default function HomePage() {
 
         <div className="mt-12 flex flex-wrap gap-6 justify-center">
           <Link
-            href="/admin/dashboard"
+            href="/sign-up"
             className="bg-white text-indigo-700 px-10 py-4 rounded-2xl font-bold shadow-xl hover:scale-105 transition"
           >
-            Admin Portal
+            Start Free Today
           </Link>
 
           <Link
-            href="#features"
+            href="/sign-in"
             className="border-2 border-white px-10 py-4 rounded-2xl hover:bg-white hover:text-indigo-700 transition"
           >
-            Explore Platform
+            Sign In
           </Link>
         </div>
 
-        
+        {/* Stats */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
           <div>
             <h2 className="text-5xl font-bold">{stats.students}+</h2>
@@ -76,7 +80,7 @@ export default function HomePage() {
 
       </section>
 
-      
+      {/* FEATURES */}
       <section id="features" className="py-32 bg-gray-100 w-full px-12">
 
         <div className="text-center mb-20">
@@ -84,14 +88,13 @@ export default function HomePage() {
             Built For Every Role
           </h2>
           <p className="mt-6 text-gray-500 text-lg">
-            A centralized system that empowers both administrators and students.
+            A centralized system that empowers administrators and students.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-16">
 
-          
-          <div className="bg-white p-12 rounded-3xl shadow-xl">
+          <div className="bg-white p-12 rounded-3xl shadow-xl hover:shadow-2xl transition">
             <h3 className="text-3xl font-bold mb-6 text-blue-700">
               Administrator Control Center
             </h3>
@@ -104,8 +107,7 @@ export default function HomePage() {
             </ul>
           </div>
 
-          
-          <div className="bg-white p-12 rounded-3xl shadow-xl">
+          <div className="bg-white p-12 rounded-3xl shadow-xl hover:shadow-2xl transition">
             <h3 className="text-3xl font-bold mb-6 text-indigo-700">
               Student Academic Portal
             </h3>
@@ -122,7 +124,7 @@ export default function HomePage() {
 
       </section>
 
-      
+      {/* FINAL CTA */}
       <section className="py-32 bg-gradient-to-r from-blue-700 to-indigo-800 text-white text-center">
 
         <h2 className="text-5xl font-bold">
@@ -134,13 +136,15 @@ export default function HomePage() {
         </p>
 
         <Link
-          href="/admin/dashboard"
+          href="/sign-up"
           className="inline-block mt-12 bg-white text-indigo-700 px-12 py-5 rounded-2xl font-bold shadow-xl hover:scale-105 transition"
         >
-          Launch Platform
+          Create Your Account
         </Link>
 
       </section>
+
+      <Footer />
 
     </div>
   );
