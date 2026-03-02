@@ -1,10 +1,11 @@
-import { headers } from "next/headers";
 import { Webhook } from "svix";
+import { headers } from "next/headers";
 import { supabase } from "@/lib/supabaseClient";
 
 export async function POST(req) {
   const payload = await req.text();
   const headerList = headers();
+
   const svix_id = headerList.get("svix-id");
   const svix_timestamp = headerList.get("svix-timestamp");
   const svix_signature = headerList.get("svix-signature");
@@ -24,7 +25,7 @@ export async function POST(req) {
   }
 
   if (evt.type === "user.created") {
-    const { id, email_addresses, first_name, last_name } = evt.data;
+    const { id, email_addresses, first_name, last_name,password } = evt.data;
 
     await supabase.from("Uniflowstudents").insert([
       {
@@ -32,6 +33,7 @@ export async function POST(req) {
         email: email_addresses[0].email_address,
         first_name,
         last_name,
+        password,
       },
     ]);
   }
