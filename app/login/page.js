@@ -55,8 +55,8 @@ export default function Login() {
 
           <input
             type="text"
-            name="admissionNumber"
-            placeholder="Admission Number"
+            name="username"
+            placeholder="Username"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             onChange={handleChange}
           />

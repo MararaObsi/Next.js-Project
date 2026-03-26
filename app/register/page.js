@@ -53,18 +53,26 @@ export default function Register() {
         {/* INPUTS */}
         <div className="space-y-4">
 
-          <input
+            <input
             type="text"
-            name="admissionNumber"
-            placeholder="Admission Number"
+            name="fullName"
+            placeholder="Enter your Full name"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
             onChange={handleChange}
           />
 
           <input
-            type="password"
-            name="password"
-            placeholder="Create Password"
+            type="text"
+            name="email"
+            placeholder="Enter your Email"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
+            onChange={handleChange}
+          />
+
+          <input
+            type="text"
+            name="admissionNumber"
+            placeholder="Admission Number"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition"
             onChange={handleChange}
           />

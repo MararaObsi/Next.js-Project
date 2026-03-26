@@ -32,10 +32,6 @@ export default function Header() {
             Announcements
           </Link>
 
-          <Link href="/dashboard" className="hover:text-blue-500 transition">
-            Dashboard
-          </Link>
-
           <Link
             href="/login"
             className="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600 transition"
@@ -59,15 +55,7 @@ export default function Header() {
           >
             Announcements
           </Link>
-
-          <Link
-            href="/dashboard"
-            onClick={() => setMenuOpen(false)}
-            className="block"
-          >
-            Dashboard
-          </Link>
-
+          
           <Link
             href="/login"
             onClick={() => setMenuOpen(false)}
