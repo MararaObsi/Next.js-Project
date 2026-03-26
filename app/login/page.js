@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -20,32 +21,69 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 px-4">
+
+      {/* LOGO (OUTSIDE + LARGE) */}
+      <div className="mb-8">
+        <Image
+          src="/sibu.png"
+          alt="Sibu Mendi School Logo"
+          width={250}
+          height={250}
+          className="object-contain drop-shadow-lg"
+          priority
+        />
+      </div>
+
+      {/* FORM */}
       <form
         onSubmit={handleLogin}
-        className="bg-white p-6 rounded-xl shadow-md w-80"
+        className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
       >
-        <h2 className="text-xl font-bold mb-4 text-center">Login</h2>
 
-        <input
-          type="text"
-          name="admissionNumber"
-          placeholder="Admission Number"
-          className="w-full p-2 border rounded mb-3"
-          onChange={handleChange}
-        />
+        {/* TITLE */}
+        <h2 className="text-2xl font-bold text-center text-gray-900">
+          Welcome Back
+        </h2>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="w-full p-2 border rounded mb-3"
-          onChange={handleChange}
-        />
+        <p className="text-center text-gray-500 text-sm mt-1 mb-6">
+          Login to your account
+        </p>
 
-        <button className="w-full bg-blue-500 text-white p-2 rounded">
+        {/* INPUTS */}
+        <div className="space-y-4 text-black">
+
+          <input
+            type="text"
+            name="admissionNumber"
+            placeholder="Admission Number"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            onChange={handleChange}
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            onChange={handleChange}
+          />
+
+        </div>
+
+        {/* BUTTON */}
+        <button className="w-full mt-6 bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md">
           Login
         </button>
+
+        {/* EXTRA LINKS */}
+        <div className="text-center mt-4 text-sm text-gray-500">
+          First time?{" "}
+          <a href="/register" className="text-blue-600 hover:underline">
+            Setup your account
+          </a>
+        </div>
+
       </form>
     </div>
   );

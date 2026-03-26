@@ -5,21 +5,24 @@ export default function Home() {
     <div className="bg-gray-50 text-gray-800">
 
       {/* HERO SECTION */}
-      <section className="flex flex-col items-center justify-center text-center px-6 py-20 bg-white">
+      <section className="flex flex-col items-center justify-center text-center px-6 py-20 bg-gradient-to-b from-white to-gray-100">
         
-        {/* LOGO */}
-        <div className="mb-6">
-          <Image
-            src="/sibu.png"
-            alt="Sibu Mendi School Logo"
-            width={140}
-            height={140}
-            className="mx-auto"
-          />
+        {/* LOGO (FIXED & IMPROVED) */}
+        <div className="mb-8 flex justify-center">
+          <div className="mb-10 flex justify-center">
+  <Image
+    src="/sibu.png"
+    alt="Sibu Mendi School Logo"
+    width={320}
+    height={320}
+    priority
+    className="object-contain drop-shadow-lg"
+  />
+</div>
         </div>
 
         {/* TITLE */}
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
           Sibu Mendi School Portal
         </h1>
 
@@ -33,7 +36,7 @@ export default function Home() {
         <div className="mt-6 flex flex-col md:flex-row gap-4">
           <a
             href="/login"
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition shadow-md"
           >
             Login
           </a>
@@ -85,7 +88,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EXTRA SECTION (POWERFUL ADDITION) */}
+      {/* EXTRA SECTION */}
       <section className="bg-white py-16 px-6">
         <div className="max-w-5xl mx-auto text-center">
 
